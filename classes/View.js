@@ -20,7 +20,7 @@ export default class View {
 		const light = new THREE.PointLight(this.colorLight, 1.5);
 		light.position.set(-40, -20, 20);
 		const light2 = new THREE.AmbientLight(0x707070);
-		light2.position.set(40, 20, 10);
+		light2.position.set(40, 70, -10);
 
 		this.scene.add(this.camera);
 		this.camera.add(light);

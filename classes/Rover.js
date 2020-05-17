@@ -60,7 +60,7 @@ export default class Rover extends Structure {
 		const coreColor = new THREE.Color(0x34f);
 		const corePosition = new Position(0, 15, 0);
 		const coreRotation = new Rotation(0, 0, 89.55);
-		const core = new Cylinder(7, 50, coreColor, corePosition, coreRotation);
+		const core = new Cylinder(7, 49.5, coreColor, corePosition, coreRotation);
 		rover.add(core.render());
 
 		const antennaColor = new THREE.Color(0xffffff);
