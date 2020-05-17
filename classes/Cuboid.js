@@ -18,7 +18,7 @@ export default class Cuboid extends Structure {
     }
 
     create() {
-        const cubeGeometry = new THREE.BoxGeometry(this.w, this.h, this.d);
+        const cubeGeometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
         const cubeMaterial = new THREE.MeshPhongMaterial({
             color: new THREE.Color('hsl(40, 100%, 60%)'),
             shininess: 40,

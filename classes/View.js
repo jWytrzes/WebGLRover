@@ -36,7 +36,7 @@ export default class View {
 		this.controls.maxPolarAngle = Math.PI / 2;
 
 		//kostki
-		const cube1Position = new Position(10, 10, 10);
+		const cube1Position = new Position(0, 10, 0);
 		const cuboid1 = new Cuboid(10, 10, 10, cube1Position);
 		this.scene.add(cuboid1.render());
 
