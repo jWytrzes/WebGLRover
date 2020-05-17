@@ -3,6 +3,7 @@ import Position from "./Position.js";
 import Rotation from "./Rotation.js";
 import Cuboid from "./Cuboid.js";
 import Cylinder from "./Cylinder.js";
+import Sphere from "./Sphere.js";
 
 export default class Rover extends Structure {
     constructor(pos = new Position(0,0,0), rot = new Rotation(0,0,0)) {
@@ -55,6 +56,22 @@ export default class Rover extends Structure {
         const wheel6Rotation = new Rotation(0,89.55,89.55);
         const wheel6 = new Cylinder(7,3,wheelsColor,wheel6Position,wheel6Rotation);
         rover.add(wheel6.render());
+
+        const coreColor = new THREE.Color(0x34f);
+        const corePosition = new Position(0,15,0);
+        const coreRotation = new Rotation(0,0,89.55);
+        const core = new Cylinder(7,50,coreColor,corePosition,coreRotation);
+        rover.add(core.render());
+
+        const antennaColor = new THREE.Color(0xffffff);
+        const antennaPosition = new Position(-22,30,12);
+        const antenna = new Cylinder(.2,30,antennaColor,antennaPosition);
+        rover.add(antenna.render());
+
+        const antennaBulbColor = new THREE.Color(0x000000);
+        const antennaBulbPosition = new Position(-22,45,12);
+        const antennaBulb = new Sphere(1,antennaBulbColor,antennaBulbPosition);
+        rover.add(antennaBulb.render());
 
         rover.position.set(this.x,this.y,this.z)
         rover.rotation.set(this.rotX, this.rotY, this.rotZ)

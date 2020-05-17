@@ -9,12 +9,13 @@ export default class Sphere extends Structure {
         this.z = pos.z;
         this.radius = radius
         this.color = color
+        this.create()
     }
 
     create() {
         const geometry = new THREE.SphereGeometry( this.radius, 128, 128)
         const material = new THREE.MeshPhongMaterial({
-            color: color,
+            color: this.color,
             shininess: 40,
         })
         const sphere = new THREE.Mesh( geometry, material )
