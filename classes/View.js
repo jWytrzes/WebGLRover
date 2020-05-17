@@ -1,6 +1,7 @@
 import Terrain from './Terrain.js';
 import Cuboid from './Cuboid.js';
 import Position from './Position.js';
+import Rotation from './Rotation.js';
 
 export default class View {
 	constructor() {
@@ -36,11 +37,12 @@ export default class View {
 
 		//kostki
 		const cube1Position = new Position(10, 10, 10);
-		const cuboid1 = new Cuboid(cube1Position, 10, 10, 10);
+		const cuboid1 = new Cuboid(10, 10, 10, cube1Position);
 		this.scene.add(cuboid1.render());
 
 		const cube2Position = new Position(30, 10, 10);
-		const cuboid2 = new Cuboid(cube2Position, 10, 10, -10);
+		const cube2Rotation = new Rotation(10, 10, 10);
+		const cuboid2 = new Cuboid(10, 10, -10, cube2Position, cube2Rotation);
 		this.scene.add(cuboid2.render());
 
 		//teren
