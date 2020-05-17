@@ -56,7 +56,7 @@ export default class View {
 		this.animate();
 
 		//łazik
-		const roverPosition = new Position(-20, 37.4, 20);
+		const roverPosition = new Position(-20, 37.4, 15);
 		//const roverRotation = new Rotation(0,0,0);
 		const rover = new Rover(roverPosition);
 		this.scene.add(rover.render());
