@@ -4,7 +4,7 @@ import Rotation from './Rotation.js';
 import Cuboid from './Cuboid.js';
 import Cylinder from './Cylinder.js';
 
-export default class Rover extends Structure {
+export default class Platform extends Structure {
 	constructor(pos = new Position(0, 0, 0), rot = new Rotation(0, 0, 0)) {
 		super();
 		this.x = pos.x;

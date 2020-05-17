@@ -73,47 +73,47 @@ export default class Rover extends Structure {
 		const antennaBulb = new Sphere(1, antennaBulbColor, antennaBulbPosition);
 		rover.add(antennaBulb.render());
 
-        const arm1Position = new Position(0, 30, 0);
-        const arm1Color = new THREE.Color(0x333333);
-        const arm1Rotation = new Rotation(0, 0, -.4);
-        const arm1 = new Cuboid(45, 2, 2, arm1Color, arm1Position, arm1Rotation);
-        rover.add(arm1.render())
+		const arm1Position = new Position(0, 30, 0);
+		const arm1Color = new THREE.Color(0x333333);
+		const arm1Rotation = new Rotation(0, 0, -0.4);
+		const arm1 = new Cuboid(45, 2, 2, arm1Color, arm1Position, arm1Rotation);
+		rover.add(arm1.render());
 
-        const arm2Position = new Position(0, 50, 0);
-        const arm2Color = new THREE.Color(0x333333);
-        const arm2Rotation = new Rotation(0, 0, .4);
-        const arm2 = new Cuboid(45, 2, 2, arm2Color, arm2Position, arm2Rotation);
-        rover.add(arm2.render())
+		const arm2Position = new Position(0, 50, 0);
+		const arm2Color = new THREE.Color(0x333333);
+		const arm2Rotation = new Rotation(0, 0, 0.4);
+		const arm2 = new Cuboid(45, 2, 2, arm2Color, arm2Position, arm2Rotation);
+		rover.add(arm2.render());
 
-        const armBulbColor = new THREE.Color(0x000000);
+		const armBulbColor = new THREE.Color(0x000000);
 		const armBulbPosition = new Position(-22, 40, 0);
 		const armBulb = new Sphere(3, armBulbColor, armBulbPosition);
 		rover.add(armBulb.render());
 
-        const arm3Position = new Position(45, 50, 0);
-        const arm3Color = new THREE.Color(0x333333);
-        const arm3Rotation = new Rotation(0, 0, -.4);
-        const arm3 = new Cuboid(45, 2, 2, arm3Color, arm3Position, arm3Rotation);
-        rover.add(arm3.render())
+		const arm3Position = new Position(45, 50, 0);
+		const arm3Color = new THREE.Color(0x333333);
+		const arm3Rotation = new Rotation(0, 0, -0.4);
+		const arm3 = new Cuboid(45, 2, 2, arm3Color, arm3Position, arm3Rotation);
+		rover.add(arm3.render());
 
-        const armBulb2Color = new THREE.Color(0x000000);
+		const armBulb2Color = new THREE.Color(0x000000);
 		const armBulb2Position = new Position(22, 60, 0);
 		const armBulb2 = new Sphere(3, armBulb2Color, armBulb2Position);
-        rover.add(armBulb2.render());
+		rover.add(armBulb2.render());
 
-        const armBulb3Color = new THREE.Color(0x000000);
+		const armBulb3Color = new THREE.Color(0x000000);
 		const armBulb3Position = new Position(67, 40, 0);
 		const armBulb3 = new Sphere(3, armBulb3Color, armBulb3Position);
-        rover.add(armBulb3.render());
+		rover.add(armBulb3.render());
 
-        const drillColor = new THREE.Color(0x000000);
-        const drillPosition = new Position(67, 40, 0);
-        const drillRotation = new Rotation(0, 0, -.4);
-		const drill = new Cuboid(15,1,1, drillColor, drillPosition, drillRotation);
-        rover.add(drill.render());
+		const drillColor = new THREE.Color(0x000000);
+		const drillPosition = new Position(67, 40, 0);
+		const drillRotation = new Rotation(0, 0, -0.4);
+		const drill = new Cuboid(15, 1, 1, drillColor, drillPosition, drillRotation);
+		rover.add(drill.render());
 
-        rover.position.set(this.x,this.y,this.z)
-        rover.rotation.set(this.rotX, this.rotY, this.rotZ)
+		rover.position.set(this.x, this.y, this.z);
+		rover.rotation.set(this.rotX, this.rotY, this.rotZ);
 
 		this.structure = rover;
 	}
