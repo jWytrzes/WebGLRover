@@ -1,4 +1,6 @@
 import Terrain from './Terrain.js';
+import Cuboid from './Cuboid.js';
+import Position from './Position.js';
 
 export default class View {
 	constructor() {
@@ -33,7 +35,7 @@ export default class View {
 		this.camera.position.z = 135;
 
 		this.animate();
-		this.render();
+		//this.render();
 	}
 
 	animate() {
@@ -44,18 +46,17 @@ export default class View {
 
 	render() {
 		//kostka
-		const geometry = new THREE.BoxGeometry(10, 5, 3);
-		const material = new THREE.MeshPhongMaterial({
-			color: this.colorYellow,
-			shininess: 40,
-		});
+		const cube1Position = new Position(10,10,10)
+		const cuboid1 = new Cuboid(cube1Position, 10, 10, 10);
+		this.scene.add(cuboid1.render())
 
-		this.cube = new THREE.Mesh(geometry, material);
-		this.scene.add(this.cube);
+		const cube2Position = new Position(30,10,10)
+		const cuboid2 = new Cuboid(cube2Position, 10, 10, -10);
+		this.scene.add(cuboid2.render())
 
 		//teren
-		const terrain = new Terrain(200, 200);
-		this.scene.add(terrain.render());
+		// const terrain = new Terrain(20, 20);
+		// this.scene.add(terrain.render);
 		this.renderer.render(this.scene, this.camera);
 	}
 
