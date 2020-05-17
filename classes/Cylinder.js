@@ -25,8 +25,6 @@ export default class Cylinder extends Structure {
         })
         const cylinder = new THREE.Mesh( geometry, material )
 
-        //const geometry = new Three
-
         cylinder.position.set(this.x,this.y,this.z)
         cylinder.rotation.set(this.rotX, this.rotY, this.rotZ)
 
