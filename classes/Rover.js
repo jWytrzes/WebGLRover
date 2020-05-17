@@ -73,6 +73,21 @@ export default class Rover extends Structure {
         const antennaBulb = new Sphere(1,antennaBulbColor,antennaBulbPosition);
         rover.add(antennaBulb.render());
 
+        const arm1Position = new Position(0, 10, 0);
+		const arm1Color = new THREE.Color('hsl(200, 100%, 60%)')
+        const arm1 = new Cuboid(50, 10, 30, arm1Color, arm1Position);
+        rover.add(arm1.render())
+
+        const arm2Position = new Position(0, 10, 0);
+		const arm2Color = new THREE.Color('hsl(200, 100%, 60%)')
+        const arm2 = new Cuboid(50, 10, 30, arm2Color, arm2Position);
+        rover.add(arm2.render())
+
+        const arm3Position = new Position(0, 10, 0);
+		const arm3Color = new THREE.Color('hsl(200, 100%, 60%)')
+        const arm3 = new Cuboid(50, 10, 30, arm3Color, arm3Position);
+        rover.add(arm3.render())
+
         rover.position.set(this.x,this.y,this.z)
         rover.rotation.set(this.rotX, this.rotY, this.rotZ)
 
