@@ -4,6 +4,7 @@ import Position from './Position.js';
 import Rotation from './Rotation.js';
 import Rover from './Rover.js';
 import Cylinder from './Cylinder.js';
+import Platform from './Platform.js';
 
 export default class View {
 	constructor() {
@@ -54,12 +55,15 @@ export default class View {
 
 		this.animate();
 
-
 		//łazik
-		//const roverPosition = new Position(0,0,0);
+		const roverPosition = new Position(-20, 37.4, 20);
 		//const roverRotation = new Rotation(0,0,0);
-		const rover = new Rover()
-		this.scene.add(rover.render())
+		const rover = new Rover(roverPosition);
+		this.scene.add(rover.render());
+
+		const platformPosition = new Position(0, 0, 0);
+		const platform = new Platform(platformPosition);
+		this.scene.add(platform.render());
 	}
 
 	render() {
