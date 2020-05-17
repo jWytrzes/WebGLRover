@@ -37,7 +37,7 @@ export default class View {
 
 		//kostki
 		const cube1Position = new Position(0, 10, 0);
-		const cube1Color = new THREE.Color('hsl(200, 100%, 60%)')
+		const cube1Color = new THREE.Color('hsl(200, 100%, 60%)');
 		const cuboid1 = new Cuboid(10, 10, 10, cube1Color, cube1Position);
 		this.scene.add(cuboid1.render());
 
