@@ -13,7 +13,7 @@ export default class View {
 		);
 
 		this.camera.position.x = 0;
-		this.camera.position.z = 0;
+		this.camera.position.y = 50;
 		this.camera.position.z = 135;
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -44,8 +44,9 @@ export default class View {
 		this.scene.add(cuboid2.render());
 
 		//teren
-		const terrain = new Terrain(150, 150);
+		const terrain = new Terrain(1000, 1000);
 		this.scene.add(terrain.render());
+
 		this.animate();
 	}
 
