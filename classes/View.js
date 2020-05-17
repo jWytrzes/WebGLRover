@@ -1,3 +1,5 @@
+import Terrain from './Terrain.js';
+
 export default class View {
 	constructor() {
 		this.scene = new THREE.Scene();
@@ -12,18 +14,10 @@ export default class View {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(this.renderer.domElement);
 
-		const geometry = new THREE.BoxGeometry(10, 5, 3);
 		const light = new THREE.PointLight(this.colorLight, 1.5);
 		light.position.set(-40, -20, 20);
 		const light2 = new THREE.AmbientLight(0x707070); // soft white light
 		light2.position.set(40, 20, 10);
-
-		const material = new THREE.MeshPhongMaterial({
-			color: this.colorYellow,
-			shininess: 40,
-		});
-
-		this.cube = new THREE.Mesh(geometry, material);
 
 		this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 		this.controls.minDistance = 100;
@@ -49,7 +43,19 @@ export default class View {
 	}
 
 	render() {
+		//kostka
+		const geometry = new THREE.BoxGeometry(10, 5, 3);
+		const material = new THREE.MeshPhongMaterial({
+			color: this.colorYellow,
+			shininess: 40,
+		});
+
+		this.cube = new THREE.Mesh(geometry, material);
 		this.scene.add(this.cube);
+
+		//teren
+		const terrain = new Terrain(200, 200);
+		this.scene.add(terrain.render());
 		this.renderer.render(this.scene, this.camera);
 	}
 
