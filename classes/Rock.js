@@ -1,7 +1,7 @@
 import Structure from "./Structure.js"
 
 export default class Rock extends Structure {
-    constructor(pos) {
+    constructor(color = new THREE.Color('hsl(40, 100%, 60%)'), pos) {
         super()
         this.x = pos.x;
         this.y = pos.y;

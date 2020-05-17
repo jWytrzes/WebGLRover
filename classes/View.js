@@ -37,12 +37,13 @@ export default class View {
 
 		//kostki
 		const cube1Position = new Position(0, 10, 0);
-		const cuboid1 = new Cuboid(10, 10, 10, cube1Position);
+		const cube1Color = new THREE.Color('hsl(200, 100%, 60%)')
+		const cuboid1 = new Cuboid(10, 10, 10, cube1Color, cube1Position);
 		this.scene.add(cuboid1.render());
 
 		const cube2Position = new Position(30, 10, 10);
 		const cube2Rotation = new Rotation(10, 10, 10);
-		const cuboid2 = new Cuboid(10, 10, -10, cube2Position, cube2Rotation);
+		const cuboid2 = new Cuboid(10, 10, -10, cube1Color, cube2Position, cube2Rotation);
 		this.scene.add(cuboid2.render());
 
 		//teren
