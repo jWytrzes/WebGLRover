@@ -6,8 +6,8 @@ import SatAntenna from './SatAntenna.js';
 
 export default class View {
 	constructor() {
-		this.scene = new THREE.Scene();
-		this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+		this.scene = new Physijs.Scene
+		this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
 
 		this.camera.position.x = 50;
 		this.camera.position.y = 100;
