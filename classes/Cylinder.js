@@ -25,12 +25,19 @@ export default class Cylinder extends Structure {
 
 	create() {
 		const geometry = new THREE.CylinderGeometry(this.radius, this.radius, this.height, 32);
-		const material = new THREE.MeshPhongMaterial({
-			color: this.color,
-			shininess: 40,
-		});
-		const cylinder = new THREE.Mesh(geometry, material);
-
+		const material = new Physijs.createMaterial(
+			new THREE.MeshPhongMaterial({
+				color: this.color,
+				shininess: 40,
+			}),
+			.8,
+			.5
+		)
+		const cylinder = new Physijs.CylinderMesh(
+			geometry,
+			material,
+			500
+		)
 		cylinder.position.set(this.x, this.y, this.z);
 		cylinder.rotation.set(this.rotX, this.rotY, this.rotZ);
 

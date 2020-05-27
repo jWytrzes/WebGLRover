@@ -7,6 +7,7 @@ import SatAntenna from './SatAntenna.js';
 export default class View {
 	constructor() {
 		this.scene = new Physijs.Scene
+		this.scene.setGravity(new THREE.Vector3( 0, -90, 0 ));
 		this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
 
 		this.camera.position.x = 50;
@@ -38,8 +39,8 @@ export default class View {
 
 		//łazik
 		const roverPosition = new Position(-20, 37.4, 20);
-		const rover = new Rover(roverPosition);
-		this.scene.add(rover.render());
+		const rover = new Rover(roverPosition, this.scene);
+		//this.scene.add(rover.render());
 
 		//platforma
 		const platformPosition = new Position(0, 0, 0);
@@ -56,6 +57,7 @@ export default class View {
 
 	render() {
 		this.renderer.render(this.scene, this.camera);
+		this.scene.simulate()
 	}
 
 	animate() {

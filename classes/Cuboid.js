@@ -27,12 +27,19 @@ export default class Cuboid extends Structure {
 
 	create() {
 		const cubeGeometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
-		const cubeMaterial = new THREE.MeshPhongMaterial({
-			color: this.color,
-			shininess: 40,
-		});
-		const cuboid = new THREE.Mesh(cubeGeometry, cubeMaterial);
-
+		const cubeMaterial = Physijs.createMaterial(
+			new THREE.MeshPhongMaterial({
+				color: this.color,
+				shininess: 40,
+			}),
+			.8,
+			.2
+		)
+		const cuboid = new Physijs.BoxMesh(
+			cubeGeometry,
+			cubeMaterial,
+			1000
+		)
 		cuboid.position.set(this.x, this.y, this.z);
 		cuboid.rotation.set(this.rotX, this.rotY, this.rotZ);
 
