@@ -24,7 +24,6 @@ export default class Terrain {
 					(terrain.position.z + vertices[i + 1]) / smoothing,
 				);
 		}
-		terrain.geometry.attributes.position.needsUpdate = true;
 		terrain.geometry.computeVertexNormals();
 
 		return terrain;
