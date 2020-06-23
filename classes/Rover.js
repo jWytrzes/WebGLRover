@@ -23,6 +23,10 @@ export default class Rover extends Structure {
 		rover.position.set(x, y, z);
 	}
 
+	updateRot(angle) {
+		rover.rotation.y = angle;
+	}
+
 	create() {
 		rover = new THREE.Object3D();
 

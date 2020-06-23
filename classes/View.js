@@ -12,6 +12,7 @@ let rovPos = {
 	y: 37.4,
 	z: 20,
 };
+let rovRot = 0;
 
 export default class View {
 	constructor() {
@@ -78,20 +79,21 @@ export default class View {
 		var rotateAngle = (Math.PI / 2) * delta; // pi/2 radians (90 degrees) per second
 
 		if (keyboard.pressed('W')) {
-			rovPos.x += moveDistance;
-			rover.updatePos(rovPos.x - moveDistance, rovPos.y, rovPos.z);
+			rovPos.x += moveDistance * Math.cos(0)
+			rover.updatePos(rovPos.x -(moveDistance * Math.cos(0)), rovPos.y, rovPos.z);
 		}
 		if (keyboard.pressed('S')) {
-			rovPos.x -= moveDistance;
-			rover.updatePos(rovPos.x + moveDistance, rovPos.y, rovPos.z);
+			rovPos.x -= moveDistance * Math.cos(rotateAngle);
+			rover.updatePos(rovPos.x + (moveDistance * Math.cos(rotateAngle)), rovPos.y, rovPos.z);
+			console.log(Math.cos(Math.PI*1.5))
 		}
 		if (keyboard.pressed('A')) {
-			rovPos.z -= moveDistance;
-			rover.updatePos(rovPos.x, rovPos.y, rovPos.z - moveDistance);
+			rovRot += rotateAngle
+			rover.updateRot(rovRot - rotateAngle)
 		}
 		if (keyboard.pressed('D')) {
-			rovPos.z += moveDistance;
-			rover.updatePos(rovPos.x, rovPos.y, rovPos.z + moveDistance);
+			rovRot -= rotateAngle
+			rover.updateRot(rovRot + rotateAngle)
 		}
 
 		this.controls.update();
