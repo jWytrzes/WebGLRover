@@ -89,12 +89,12 @@ export default class View {
 			rover.updatePos(rovPos.x + (moveDistance * Math.cos(rovRot)), rovPos.y , rovPos.z - (moveDistance * Math.sin(rovRot)));
 			console.log(Math.round(Math.cos(Math.PI*3/2)))
 		}
-		if (keyboard.pressed('A')) {
+		if (keyboard.pressed('A') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
 			rovRot += rotateAngle
 			rover.updateRot(rovRot - rotateAngle)
 			console.log(rovRot)
 		}
-		if (keyboard.pressed('D')) {
+		if (keyboard.pressed('D') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
 			rovRot -= rotateAngle
 			rover.updateRot(rovRot + rotateAngle)
 		}
