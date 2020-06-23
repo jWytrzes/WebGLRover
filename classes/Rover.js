@@ -5,7 +5,7 @@ import Cuboid from './Cuboid.js';
 import Cylinder from './Cylinder.js';
 import Sphere from './Sphere.js';
 
-var rover;
+var rover, wheel1, wheel2, wheel3, wheel4, wheel5, wheel6;
 
 export default class Rover extends Structure {
 	constructor(pos = new Position(0, 0, 0), rot = new Rotation(0, 0, 0)) {
@@ -23,8 +23,23 @@ export default class Rover extends Structure {
 		rover.position.set(x, y, z);
 	}
 
-	updateRot(angle) {
+	updateRot(angle, dir) {
 		rover.rotation.y = angle;
+		this.turnWheels(dir);
+	}
+
+	turnWheels(dir) {
+		if (dir === 'A') {
+			wheel1.structure.rotation.y = wheel2.structure.rotation.y = wheel3.structure.rotation.y = wheel4.structure.rotation.y = wheel5.structure.rotation.y = wheel6.structure.rotation.y =
+				1.57 + 0.4;
+		} else {
+			wheel1.structure.rotation.y = wheel2.structure.rotation.y = wheel3.structure.rotation.y = wheel4.structure.rotation.y = wheel5.structure.rotation.y = wheel6.structure.rotation.y =
+				1.57 - 0.4;
+		}
+	}
+
+	straightenWheels() {
+		wheel1.structure.rotation.y = wheel2.structure.rotation.y = wheel3.structure.rotation.y = wheel4.structure.rotation.y = wheel5.structure.rotation.y = wheel6.structure.rotation.y = 1.57;
 	}
 
 	create() {
@@ -39,32 +54,32 @@ export default class Rover extends Structure {
 
 		const wheel1Position = new Position(-19, 0, 15);
 		const wheel1Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel1 = new Cylinder(7, 3, wheelsColor, wheel1Position, wheel1Rotation);
+		wheel1 = new Cylinder(7, 3, wheelsColor, wheel1Position, wheel1Rotation);
 		rover.add(wheel1.render());
 
 		const wheel2Position = new Position(19, 0, -15);
 		const wheel2Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel2 = new Cylinder(7, 3, wheelsColor, wheel2Position, wheel2Rotation);
+		wheel2 = new Cylinder(7, 3, wheelsColor, wheel2Position, wheel2Rotation);
 		rover.add(wheel2.render());
 
 		const wheel3Position = new Position(19, 0, 15);
 		const wheel3Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel3 = new Cylinder(7, 3, wheelsColor, wheel3Position, wheel3Rotation);
+		wheel3 = new Cylinder(7, 3, wheelsColor, wheel3Position, wheel3Rotation);
 		rover.add(wheel3.render());
 
 		const wheel4Position = new Position(-19, 0, -15);
 		const wheel4Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel4 = new Cylinder(7, 3, wheelsColor, wheel4Position, wheel4Rotation);
+		wheel4 = new Cylinder(7, 3, wheelsColor, wheel4Position, wheel4Rotation);
 		rover.add(wheel4.render());
 
 		const wheel5Position = new Position(0, 0, 15);
 		const wheel5Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel5 = new Cylinder(7, 3, wheelsColor, wheel5Position, wheel5Rotation);
+		wheel5 = new Cylinder(7, 3, wheelsColor, wheel5Position, wheel5Rotation);
 		rover.add(wheel5.render());
 
 		const wheel6Position = new Position(0, 0, -15);
 		const wheel6Rotation = new Rotation(0, 89.55, 89.55);
-		const wheel6 = new Cylinder(7, 3, wheelsColor, wheel6Position, wheel6Rotation);
+		wheel6 = new Cylinder(7, 3, wheelsColor, wheel6Position, wheel6Rotation);
 		rover.add(wheel6.render());
 
 		const coreColor = new THREE.Color(0x34f);

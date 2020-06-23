@@ -9,7 +9,7 @@ var clock = new THREE.Clock();
 var rover;
 let rovPos = {
 	x: -20,
-	y: 36,
+	y: 35.5,
 	z: 20,
 };
 let rovRot = 0;
@@ -54,7 +54,7 @@ export default class View {
 		this.structure = terrain;
 
 		//łazik
-		const roverPosition = new Position(-20, 36, 20);
+		const roverPosition = new Position(-20, 35.5, 20);
 		rover = new Rover(roverPosition);
 		this.scene.add(rover.render());
 
@@ -97,13 +97,21 @@ export default class View {
 			);
 		}
 		if (keyboard.pressed('A') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
-			rovRot += rotateAngle
-			rover.updateRot(rovRot - rotateAngle)
-			console.log(rovRot)
+			rovRot += rotateAngle;
+			rover.updateRot(rovRot - rotateAngle, 'A');
+		} else if (!keyboard.pressed('A') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
+			rover.straightenWheels();
+		} else if (keyboard.pressed('A')) {
+			rover.turnWheels('A');
 		}
+
 		if (keyboard.pressed('D') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
-			rovRot -= rotateAngle
-			rover.updateRot(rovRot + rotateAngle)
+			rovRot -= rotateAngle;
+			rover.updateRot(rovRot + rotateAngle, 'D');
+		} else if (!keyboard.pressed('D') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
+			rover.straightenWheels();
+		} else if (keyboard.pressed('D')) {
+			rover.turnWheels('D');
 		}
 
 		this.controls.update();
