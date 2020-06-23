@@ -79,17 +79,20 @@ export default class View {
 		var rotateAngle = (Math.PI / 2) * delta; // pi/2 radians (90 degrees) per second
 
 		if (keyboard.pressed('W')) {
-			rovPos.x += moveDistance * Math.cos(0)
-			rover.updatePos(rovPos.x -(moveDistance * Math.cos(0)), rovPos.y, rovPos.z);
+			rovPos.x += moveDistance * Math.cos(rovRot)
+			rovPos.z -= moveDistance * Math.sin(rovRot);
+			rover.updatePos(rovPos.x -(moveDistance * Math.cos(0)), rovPos.y, rovPos.z + (moveDistance * Math.sin(rovRot)));
 		}
 		if (keyboard.pressed('S')) {
-			rovPos.x -= moveDistance * Math.cos(rotateAngle);
-			rover.updatePos(rovPos.x + (moveDistance * Math.cos(rotateAngle)), rovPos.y, rovPos.z);
-			console.log(Math.cos(Math.PI*1.5))
+			rovPos.x -= moveDistance * Math.cos(rovRot);
+			rovPos.z += moveDistance * Math.sin(rovRot);
+			rover.updatePos(rovPos.x + (moveDistance * Math.cos(rovRot)), rovPos.y , rovPos.z - (moveDistance * Math.sin(rovRot)));
+			console.log(Math.round(Math.cos(Math.PI*3/2)))
 		}
 		if (keyboard.pressed('A')) {
 			rovRot += rotateAngle
 			rover.updateRot(rovRot - rotateAngle)
+			console.log(rovRot)
 		}
 		if (keyboard.pressed('D')) {
 			rovRot -= rotateAngle
