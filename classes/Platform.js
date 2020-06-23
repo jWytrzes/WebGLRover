@@ -21,7 +21,7 @@ export default class Platform extends Structure {
 
 		const basePosition = new Position(-19, 5, 15);
 		const baseRotation = new Rotation(0, 0, 0);
-		const base = new Cylinder(60, 50, 0x687887, basePosition, baseRotation);
+		const base = new Cylinder(60, 48, 0x687887, basePosition, baseRotation);
 		platform.add(base.render());
 
 		const borderPosition = new Position(-19, 5, 15);

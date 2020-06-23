@@ -5,6 +5,8 @@ import Cuboid from './Cuboid.js';
 import Cylinder from './Cylinder.js';
 import Sphere from './Sphere.js';
 
+var rover;
+
 export default class Rover extends Structure {
 	constructor(pos = new Position(0, 0, 0), rot = new Rotation(0, 0, 0)) {
 		super();
@@ -17,8 +19,12 @@ export default class Rover extends Structure {
 		this.create();
 	}
 
+	updatePos(x, y, z) {
+		rover.position.set(x, y, z);
+	}
+
 	create() {
-		const rover = new THREE.Object3D();
+		rover = new THREE.Object3D();
 
 		const cube1Position = new Position(0, 10, 0);
 		const cube1Color = new THREE.Color('hsl(200, 100%, 60%)');

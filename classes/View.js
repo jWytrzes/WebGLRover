@@ -1,11 +1,25 @@
-import Terrain from './Terrain.js';
 import Position from './Position.js';
 import Rover from './Rover.js';
 import Platform from './Platform.js';
 import SatAntenna from './SatAntenna.js';
+import TerrainFlat from './TerrainFlat.js';
+
+var keyboard = new THREEx.KeyboardState();
+var clock = new THREE.Clock();
+var rover;
+let rovPos = {
+	x: -20,
+	y: 37.4,
+	z: 20,
+};
 
 export default class View {
 	constructor() {
+		this.init();
+		this.animate();
+	}
+
+	init() {
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
 
@@ -33,12 +47,14 @@ export default class View {
 		this.controls.minPolarAngle = 0;
 
 		//teren
-		const terrain = new Terrain(2000, 2000);
+		const terrain = new TerrainFlat(2000, 2000, 0xa45d45, new Position(0, 28, 0));
 		this.scene.add(terrain.render());
+
+		this.structure = terrain;
 
 		//łazik
 		const roverPosition = new Position(-20, 37.4, 20);
-		const rover = new Rover(roverPosition);
+		rover = new Rover(roverPosition);
 		this.scene.add(rover.render());
 
 		//platforma
@@ -50,16 +66,40 @@ export default class View {
 		const antennaPosition = new Position(250, 0, -160);
 		const antenna = new SatAntenna(antennaPosition);
 		this.scene.add(antenna.render());
-
-		this.animate();
 	}
 
 	render() {
 		this.renderer.render(this.scene, this.camera);
 	}
 
+	update() {
+		var delta = clock.getDelta(); // seconds.
+		var moveDistance = 200 * delta; // 200 pixels per second
+		var rotateAngle = (Math.PI / 2) * delta; // pi/2 radians (90 degrees) per second
+
+		if (keyboard.pressed('W')) {
+			rovPos.x += moveDistance;
+			rover.updatePos(rovPos.x - moveDistance, rovPos.y, rovPos.z);
+		}
+		if (keyboard.pressed('S')) {
+			rovPos.x -= moveDistance;
+			rover.updatePos(rovPos.x + moveDistance, rovPos.y, rovPos.z);
+		}
+		if (keyboard.pressed('A')) {
+			rovPos.z -= moveDistance;
+			rover.updatePos(rovPos.x, rovPos.y, rovPos.z - moveDistance);
+		}
+		if (keyboard.pressed('D')) {
+			rovPos.z += moveDistance;
+			rover.updatePos(rovPos.x, rovPos.y, rovPos.z + moveDistance);
+		}
+
+		this.controls.update();
+	}
+
 	animate() {
 		this.render();
+		this.update();
 		requestAnimationFrame(() => this.animate());
 	}
 }
