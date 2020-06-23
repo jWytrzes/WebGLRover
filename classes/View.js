@@ -13,6 +13,8 @@ let rovPos = {
 	z: 20,
 };
 let rovRot = 0;
+let isPressedForward = false;
+let isPressedBackward = false;
 
 export default class View {
 	constructor() {
@@ -77,17 +79,35 @@ export default class View {
 		var delta = clock.getDelta(); // seconds.
 		var moveDistance = 200 * delta; // 200 pixels per second
 		var rotateAngle = (Math.PI / 2) * delta; // pi/2 radians (90 degrees) per second
+		console.log(isPressedForward)
 
 		if (keyboard.pressed('W')) {
+			isPressedForward = true;
 			rovPos.x += moveDistance * Math.cos(rovRot);
 			rovPos.z -= moveDistance * Math.sin(rovRot);
 			rover.updatePos(
-				rovPos.x - moveDistance * Math.cos(0),
+				rovPos.x - moveDistance * Math.cos(rovRot),
 				rovPos.y,
 				rovPos.z + moveDistance * Math.sin(rovRot),
 			);
+		} else if (isPressedForward === true) {
+			let i = 90;
+			const interval = setInterval(() => {
+				i -= 2;
+				rovPos.x += moveDistance * (i/100) * Math.cos(rovRot);
+				rovPos.z -= moveDistance * (i/100) * Math.sin(rovRot);
+				rover.updatePos(
+					rovPos.x - moveDistance * Math.cos(rovRot),
+					rovPos.y,
+					rovPos.z + moveDistance * Math.sin(rovRot),
+					console.log('hah')
+				);
+				if (i <= 0) clearInterval(interval)
+			}, 10)
+			isPressedForward = false
 		}
 		if (keyboard.pressed('S')) {
+			isPressedBackward = true
 			rovPos.x -= moveDistance * Math.cos(rovRot);
 			rovPos.z += moveDistance * Math.sin(rovRot);
 			rover.updatePos(
@@ -95,6 +115,21 @@ export default class View {
 				rovPos.y,
 				rovPos.z - moveDistance * Math.sin(rovRot),
 			);
+		} else if (isPressedBackward) {
+			let i = 90;
+			const interval = setInterval(() => {
+				i -= 2;
+				rovPos.x -= moveDistance * (i/100) * Math.cos(rovRot);
+				rovPos.z += moveDistance * (i/100) * Math.sin(rovRot);
+				rover.updatePos(
+					rovPos.x + moveDistance * Math.cos(rovRot),
+					rovPos.y,
+					rovPos.z - moveDistance * Math.sin(rovRot),
+					console.log('hah')
+				);
+				if (i <= 0) clearInterval(interval)
+			}, 10)
+			isPressedBackward = false
 		}
 		if (keyboard.pressed('A') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
 			rovRot += rotateAngle
