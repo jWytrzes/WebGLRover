@@ -9,7 +9,7 @@ var clock = new THREE.Clock();
 var rover;
 let rovPos = {
 	x: -20,
-	y: 37.4,
+	y: 36,
 	z: 20,
 };
 let rovRot = 0;
@@ -54,7 +54,7 @@ export default class View {
 		this.structure = terrain;
 
 		//łazik
-		const roverPosition = new Position(-20, 37.4, 20);
+		const roverPosition = new Position(-20, 36, 20);
 		rover = new Rover(roverPosition);
 		this.scene.add(rover.render());
 
@@ -79,15 +79,22 @@ export default class View {
 		var rotateAngle = (Math.PI / 2) * delta; // pi/2 radians (90 degrees) per second
 
 		if (keyboard.pressed('W')) {
-			rovPos.x += moveDistance * Math.cos(rovRot)
+			rovPos.x += moveDistance * Math.cos(rovRot);
 			rovPos.z -= moveDistance * Math.sin(rovRot);
-			rover.updatePos(rovPos.x -(moveDistance * Math.cos(0)), rovPos.y, rovPos.z + (moveDistance * Math.sin(rovRot)));
+			rover.updatePos(
+				rovPos.x - moveDistance * Math.cos(0),
+				rovPos.y,
+				rovPos.z + moveDistance * Math.sin(rovRot),
+			);
 		}
 		if (keyboard.pressed('S')) {
 			rovPos.x -= moveDistance * Math.cos(rovRot);
 			rovPos.z += moveDistance * Math.sin(rovRot);
-			rover.updatePos(rovPos.x + (moveDistance * Math.cos(rovRot)), rovPos.y , rovPos.z - (moveDistance * Math.sin(rovRot)));
-			console.log(Math.round(Math.cos(Math.PI*3/2)))
+			rover.updatePos(
+				rovPos.x + moveDistance * Math.cos(rovRot),
+				rovPos.y,
+				rovPos.z - moveDistance * Math.sin(rovRot),
+			);
 		}
 		if (keyboard.pressed('A') && (keyboard.pressed('W') || keyboard.pressed('S'))) {
 			rovRot += rotateAngle
