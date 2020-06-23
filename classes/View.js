@@ -53,6 +53,7 @@ export default class View {
 		this.scene.add(antenna.render());
 
 		this.animate();
+
 	}
 
 	render() {
@@ -64,4 +65,6 @@ export default class View {
 		this.render();
 		requestAnimationFrame(() => this.animate());
 	}
+
+
 }

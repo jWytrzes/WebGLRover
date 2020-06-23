@@ -35,6 +35,7 @@ export default class Terrain {
 				);
 		}
 		terrain.geometry.attributes.position.needsUpdate = true;
+		terrain.geometry.computeFaceNormals();
 		terrain.geometry.computeVertexNormals();
 
 		terrain.receiveShadow = true;

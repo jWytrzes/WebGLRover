@@ -85,40 +85,45 @@ export default class Rover extends Structure {
 
 		const wheelsColor = new THREE.Color(0x000);
 
-		const wheel1Position = new Position(-99, 37.5, 35);
-		const wheel1Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
-		const wheel1 = new Cylinder(7, 3, wheelsColor, wheel1Position, wheel1Rotation);
-		this.scene.add(wheel1.render())
-		const wheel1Constraint = new Physijs.DOFConstraint(
-			wheel1.render(), cuboid1.render(), new THREE.Vector3( -39, 37.5, 35 )
-		)
+		// const wheel1Position = new Position(-99, 37.5, 35);
+		// const wheel1Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
+		// const wheel1 = new Cylinder(7, 3, wheelsColor, wheel1Position, wheel1Rotation);
+		// this.scene.add(wheel1.render())
+		// const wheel1Constraint = new Physijs.DOFConstraint(
+		// 	wheel1.render(), cuboid1.render(), new THREE.Vector3( -39, 37.5, 35 )
+		// )
 		//this.scene.addConstraint(wheel1Constraint)
 		//wheel1Constraint.setAngularLowerLimit( new THREE.Vector3( 0, -Math.PI, 1 ) );
 		//wheel1Constraint.setAngularUpperLimit(new THREE.Vector3( 0, -Math.PI, 0 ))
 		//rover.add(wheel1.render());
 
+		const wheel1Position = new Position(-19, 0, 15);
+		const wheel1Rotation = new Rotation(0, Math.PI/2+this.wheelRotate, Math.PI/2);
+		const wheel1 = new Cylinder(7, 3, wheelsColor, wheel1Position, wheel1Rotation);
+		rover.add(wheel1.render());
+
 		const wheel2Position = new Position(19, 0, -15);
-		const wheel2Rotation = new Rotation(0, 89.55, 89.55);
+		const wheel2Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
 		const wheel2 = new Cylinder(7, 3, wheelsColor, wheel2Position, wheel2Rotation);
 		rover.add(wheel2.render());
 
 		const wheel3Position = new Position(19, 0, 15);
-		const wheel3Rotation = new Rotation(0, 89.55, 89.55);
+		const wheel3Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
 		const wheel3 = new Cylinder(7, 3, wheelsColor, wheel3Position, wheel3Rotation);
 		rover.add(wheel3.render());
 
 		const wheel4Position = new Position(-19, 0, -15);
-		const wheel4Rotation = new Rotation(0, 89.55, 89.55);
+		const wheel4Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
 		const wheel4 = new Cylinder(7, 3, wheelsColor, wheel4Position, wheel4Rotation);
 		rover.add(wheel4.render());
 
 		const wheel5Position = new Position(0, 0, 15);
-		const wheel5Rotation = new Rotation(0, 89.55, 89.55);
+		const wheel5Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
 		const wheel5 = new Cylinder(7, 3, wheelsColor, wheel5Position, wheel5Rotation);
 		rover.add(wheel5.render());
 
 		const wheel6Position = new Position(0, 0, -15);
-		const wheel6Rotation = new Rotation(0, 89.55, 89.55);
+		const wheel6Rotation = new Rotation(0, Math.PI/2, Math.PI/2);
 		const wheel6 = new Cylinder(7, 3, wheelsColor, wheel6Position, wheel6Rotation);
 		rover.add(wheel6.render());
 
@@ -126,5 +131,25 @@ export default class Rover extends Structure {
 		rover.rotation.set(this.rotX, this.rotY, this.rotZ);
 
 		this.structure = rover;
+		this.interactive()
+		console.log(this.wheelRotate)
+	}
+
+	wheelRotate = 0;
+
+	interactive() {
+		document.addEventListener('keydown', (e) => {
+			console.log(this.wheelRotate)
+			switch (e.key) {
+				case 'a':
+					this.wheelRotate = Math.max(this.wheelRotate - 0.05, -Math.PI/5);
+					break;
+				case 'd':
+					this.wheelRotate = Math.min(this.wheelRotate + 0.05, Math.PI/5);
+					break;
+				default:
+					break;
+			}
+		})
 	}
 }
